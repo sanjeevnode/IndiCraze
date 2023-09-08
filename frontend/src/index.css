@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Aclonica&family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  body {
+    @apply bg-gradient-to-b from-[#fcedf7]  to-[#faf5f5] ;
+    @apply font-[Poppins]
+
+  }
+}
+
+/* [#FEF2EA] */

@@ -51,8 +51,8 @@ const Edit = () => {
                     <select className='outline-none bg-[#f1f1f1] px-2 md:px-4 py-2 rounded-md text-[#525FE1] cursor-pointer'  { ...register("category", { required: true }) }  defaultValue={location.state.item.category}>
                         <option value="vegetarian">Vegetarian</option>
                         <option value="non-vegetarian">Non Vegetarian</option>
-                        <option value="Beverages">Beverages</option>
-                        <option value="Breads">Breads</option>
+                        <option value="beverages">Beverages</option>
+                        <option value="breads">Breads</option>
                     </select>
 
                     <input className='outline-none bg-[#f1f1f1] px-2 md:px-4 py-2 rounded-md text-[#525FE1]' type="text" placeholder='imageURL' { ...register('imageURL', { required: true }) }   defaultValue={location.state.item.imageURL}/>
