@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Aclonica&family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,10 +7,27 @@
 
 @layer base {
   body {
-    @apply bg-gradient-to-b from-[#fcedf7]  to-[#faf5f5] ;
-    @apply font-[Poppins]
+    /* @apply bg-gradient-to-b from-gray-200  to-white ; */
+    @apply font-[Lato] bg-white
 
   }
+ 
 }
 
 /* [#FEF2EA] */
+
+.box-shadow:hover{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.profile-box-shadow{
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.active{
+  @apply text-gray-600 bg-orange-200    
+}
+
+.mobile-active .active{
+  @apply text-[rgb(251,102,0)] bg-white
+}

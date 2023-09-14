@@ -7,6 +7,7 @@ import foodItemRouter from './routes/foodItemRoutes.js'
 import adminRouter from './routes/aminRoutes.js'
 import sendEmailRouter from './routes/sendemailRoutes.js'
 import userRouter from './routes/userRoutes.js'
+import cartRouter from './routes/cartRoutes.js'
 
 // import bcrypt from "bcryptjs"
 
@@ -28,12 +29,11 @@ app.use('/api/fooditem',foodItemRouter);
 app.use('/api/admin',adminRouter);
 app.use('/api/sendemail',sendEmailRouter);
 app.use('/api/user',userRouter);
+app.use('/api/cart/',cartRouter);
 
 
-app.get('/mail',async(req, res) => {
-   const data=  await Email('me.sanjeevks@gmail.com')
-   console.log(data.response);
-    res.status(200).json({x:data.response});
+app.get('/',(req, res) => {
+    res.status(200).send('Api is runing');
 })
 
 
