@@ -25,7 +25,7 @@ const Profile = () => {
         <div className="  md:min-w-[70%] md:w-[70%] w-[95%] p-2 h-full flex flex-col gap-4 mt-10 md:mt-4 ">
           {/* main container */}
 
-          <div className=" flex flex-col md:flex-row gap-6 md:gap-2 w-full  bg-white md:box-shadow justify-between py-6 md:py-0 h-full ">
+          <div className=" flex flex-col md:flex-row gap-6 md:gap-2 w-full  bg-white md:box-shadow justify-start  md:py-0 h-full ">
             {/* side bar */}
             <div className="hidden md:flex min-w-[20%]  flex-col gap-10  py-10  px-4 border-r border-gray-200">
               <div className="flex justify-center items-center  p-4">
@@ -58,15 +58,6 @@ const Profile = () => {
             </div>
 
             {/* content */}
-            <div className="w-full md:w-[80%]  flex justify-center items-start md:items-center h-fit md:h-full profile ">
-              <Routes>
-                <Route index element={<PersonalDetails />} />
-                <Route path="personalDetails" element={<PersonalDetails />} />
-                <Route path="address" element={<UserAddress />} />
-                <Route path="changePassword" element={<UserChangePassword />} />
-              </Routes>
-            </div>
-
             <div className="md:hidden h-[50px] w-full flex justify-center items-center ">
               <div className=" flex gap-10 justify-center items-center bg-gray-50 py-3 px-6  rounded-lg mobile-active shadow-xl">
                 <NavLink to="personalDetails">
@@ -81,6 +72,15 @@ const Profile = () => {
                   <MdPassword size={25} />
                 </NavLink>
               </div>
+            </div>
+
+            <div className="w-full md:w-[80%]  flex justify-center items-start md:items-center h-fit md:h-full profile ">
+              <Routes>
+                <Route index element={<PersonalDetails />} />
+                <Route path="personalDetails" element={<PersonalDetails />} />
+                <Route path="address" element={<UserAddress />} />
+                <Route path="changePassword" element={<UserChangePassword />} />
+              </Routes>
             </div>
           </div>
         </div>
