@@ -59,8 +59,9 @@ const Login = ({ setToggleRegister }) => {
         e.target.reset();
       })
       .catch((error) => {
+        setIsLoading(false);
         toast.error(error.message, {
-          autoClose: 2000,
+          autoClose: 1000,
         });
       });
   };
