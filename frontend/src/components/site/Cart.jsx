@@ -5,9 +5,10 @@ import { Context } from "../../App";
 import { loadStripe } from "@stripe/stripe-js";
 import { toast } from "react-toastify";
 const Cart = () => {
-  const { cart, TotalPrice, token } = useContext(Context);
+  const { cart, TotalPrice, token, setIsLoading } = useContext(Context);
 
   const handlePayment = async () => {
+    setIsLoading(true);
     try {
       const stripe = await loadStripe(
         "pk_test_51NrHSHSHL4Plemd0CfHategsOnsUXk91afhDbhQ7NShwDG56fJVbO5bri1MSXnpFxRWW6bIgCsrXvJD5RaBhLt4H001uQwVMng"
@@ -36,6 +37,7 @@ const Cart = () => {
         })
           .then((response) => {
             if (response.ok) {
+              setIsLoading(false);
               stripe.redirectToCheckout({
                 sessionId: sesssion.id,
               });

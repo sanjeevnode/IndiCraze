@@ -6,8 +6,13 @@ import { Context } from "../../App";
 import { toast } from "react-toastify";
 
 const Login = ({ setToggleRegister }) => {
-  const { setLoginBackdrop, setIsLoggedIn, setCurrentUser, token } =
-    useContext(Context);
+  const {
+    setLoginBackdrop,
+    setIsLoggedIn,
+    setCurrentUser,
+    token,
+    setIsLoading,
+  } = useContext(Context);
   const [showpassword, setShowPassword] = useState(false);
   const { register, handleSubmit } = useForm();
   // const [isLoading, setIsLoading] = useState(true);
@@ -23,6 +28,7 @@ const Login = ({ setToggleRegister }) => {
   };
 
   const formSubmit = async (data, e) => {
+    setIsLoading(true);
     await loginUser({
       email: data.email,
       password: data.password,
@@ -47,8 +53,8 @@ const Login = ({ setToggleRegister }) => {
           city: data.city,
           pincode: data.pincode,
         });
-        console.log(data.address);
 
+        setIsLoading(false);
         setIsLoggedIn(true);
         e.target.reset();
       })

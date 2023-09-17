@@ -150,20 +150,26 @@ const Navbar = () => {
             )}
           </li>
 
-          <li className="text-3xl">
-            <NavLink to="/profile">
-              <p className="font-light text-gray-500 cursor-pointer">Profile</p>
-            </NavLink>
-          </li>
+          {isLoggedIn && (
+            <li className="text-3xl">
+              <NavLink to="/profile">
+                <p className="font-light text-gray-500 cursor-pointer">
+                  Profile
+                </p>
+              </NavLink>
+            </li>
+          )}
 
-          <li className="text-3xl">
-            <button
-              onClick={handleLogout}
-              className="font-light text-gray-500 cursor-pointer"
-            >
-              Logout
-            </button>
-          </li>
+          {isLoggedIn && (
+            <li className="text-3xl">
+              <button
+                onClick={handleLogout}
+                className="font-light text-gray-500 cursor-pointer"
+              >
+                Logout
+              </button>
+            </li>
+          )}
         </ul>
       </div>
     </div>
