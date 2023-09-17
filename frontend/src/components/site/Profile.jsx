@@ -1,7 +1,7 @@
 import profileIcon from "../../assets/profile.png";
 import UserAddress from "./UserAddress";
 import UserChangePassword from "./UserChangePassword";
-import PersonalDetails from "./personalDetails";
+import PersonalDetails from "./PersonalDetails";
 import { NavLink, Outlet, Route, Routes, useNavigate } from "react-router-dom";
 import { MdPassword } from "react-icons/md";
 import { LiaAddressCard } from "react-icons/lia";
