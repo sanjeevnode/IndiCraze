@@ -25,7 +25,7 @@ const Profile = () => {
         <div className="  md:min-w-[70%] md:w-[70%] w-[95%] p-2 h-full flex flex-col gap-4 mt-10 md:mt-4 ">
           {/* main container */}
 
-          <div className=" flex flex-col md:flex-row gap-6 md:gap-2 w-full  bg-white md:box-shadow justify-start  md:py-0 h-full ">
+          <div className=" flex flex-col md:flex-row gap-6 md:gap-2 w-full  bg-white md:box-shadow justify-start md:py-0 h-full ">
             {/* side bar */}
             <div className="hidden md:flex min-w-[20%]  flex-col gap-10  py-10  px-4 border-r border-gray-200">
               <div className="flex justify-center items-center  p-4">
