@@ -14,9 +14,11 @@ const Dropdown = () => {
     clearCart,
     setIsLoading,
   } = useContext(Context);
+
   const handleLogout = async () => {
     setIsLoading(true);
-    await clearCart().then((response) => {
+    try {
+      const response = await clearCart();
       if (response.ok) {
         setIsLoading(false);
         setUserDropdownOptions(false);
@@ -28,8 +30,14 @@ const Dropdown = () => {
           autoClose: 2000,
         });
       }
-    });
+    } catch (error) {
+      setIsLoading(false);
+      toast.error("Unable to log out", {
+        autoClose: 2000,
+      });
+    }
   };
+
   return (
     <>
       {userDropdownOptions ? (
@@ -38,7 +46,7 @@ const Dropdown = () => {
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0 }}
-            className=" hidden md:flex shadow-xl bg-white rounded-lg absolute right-20 overflow-hidden mt-[60px]"
+            className="hidden md:flex shadow-xl bg-white rounded-lg absolute right-20 overflow-hidden mt-[60px]"
           >
             <div className="flex flex-col">
               <button
@@ -46,7 +54,7 @@ const Dropdown = () => {
                   navigate("/profile", { replace: true });
                   setUserDropdownOptions(false);
                 }}
-                className="flex gap-2 px-8 py-2 w-full justify-center items-center  cursor-pointer hover:bg-gray-200"
+                className="flex gap-2 px-8 py-2 w-full justify-center items-center cursor-pointer hover:bg-gray-200"
               >
                 <BsPersonCircle color="gray " />
                 <p className="text-gray-500">Profile</p>

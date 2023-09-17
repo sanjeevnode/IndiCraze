@@ -1,33 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   body {
     /* @apply bg-gradient-to-b from-gray-200  to-white ; */
-    @apply font-[Lato] bg-white
-
+    @apply font-[Lato] bg-white;
   }
- 
+}
+
+@layer components {
+  .box-shadow {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  }
+  .cartitem-shadow {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+      rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  }
 }
 
 /* [#FEF2EA] */
 
-.box-shadow:hover{
+.box-shadow:hover {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.profile-box-shadow{
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+.active {
+  @apply text-gray-600 bg-orange-200;
 }
 
-.active{
-  @apply text-gray-600 bg-orange-200    
-}
-
-.mobile-active .active{
-  @apply text-[rgb(251,102,0)] bg-white
+.mobile-active .active {
+  @apply text-[rgb(251,102,0)] bg-white;
 }

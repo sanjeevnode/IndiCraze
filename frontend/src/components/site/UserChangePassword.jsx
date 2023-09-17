@@ -28,9 +28,7 @@ const UserChangePassword = () => {
       })
       .then((responseData) => {
         setCurrentUser(responseData);
-        toast.success("Updated Successfully", {
-          autoClose: 500,
-        });
+
         // window.location.reload();
       })
       .catch((error) => {

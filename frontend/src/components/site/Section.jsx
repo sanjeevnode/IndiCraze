@@ -8,17 +8,23 @@ import "aos/dist/aos.css";
 // import { useNavigate } from 'react-router-dom'
 
 const Section = ({ ele, i }) => {
-  const { isLoggedIn, setLoginBackdrop, currentUser, setIsLoading } =
-    useContext(Context);
+  const {
+    isLoggedIn,
+    setLoginBackdrop,
+    token,
+    setIsLoading,
+    setCart,
+    TotalPrice,
+  } = useContext(Context);
 
   const addToCart = async () => {
     await fetch(`/api/cart/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token.current}`,
       },
       body: JSON.stringify({
-        userID: currentUser._id,
         item: {
           _id: ele._id,
           name: ele.name,
@@ -27,18 +33,23 @@ const Section = ({ ele, i }) => {
           category: ele.category,
         },
       }),
-    }).then((response) => {
-      if (response.ok) {
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Unable to add item");
+        }
+        return response.json();
+      })
+      .then((response) => {
         setIsLoading(false);
-        toast.success(`item added to cart `, {
+        setCart(response.items);
+        TotalPrice.current = response.totalPrice;
+      })
+      .catch((err) => {
+        toast.error(err.message, {
           autoClose: 500,
         });
-      } else {
-        toast.error(`something went wrong `, {
-          autoClose: 500,
-        });
-      }
-    });
+      });
   };
 
   const handleOrderNow = async () => {

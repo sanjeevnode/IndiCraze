@@ -28,9 +28,6 @@ const UserAddress = () => {
       .then((responseData) => {
         setCurrentUser(responseData);
         window.location.reload();
-        toast.success("Updated Successfully", {
-          autoClose: 500,
-        });
       })
       .catch((err) => {
         toast.error(err.message, {

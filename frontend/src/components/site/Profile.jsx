@@ -2,49 +2,31 @@ import profileIcon from "../../assets/profile.png";
 import UserAddress from "./UserAddress";
 import UserChangePassword from "./UserChangePassword";
 import PersonalDetails from "./personalDetails";
-import { NavLink, Outlet, Route, Routes } from "react-router-dom";
+import { NavLink, Outlet, Route, Routes, useNavigate } from "react-router-dom";
 import { MdPassword } from "react-icons/md";
 import { LiaAddressCard } from "react-icons/lia";
 import { BsFillPersonLinesFill } from "react-icons/bs";
-import { MdOutlineArrowBackIos } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
 import "aos/dist/aos.css";
+import Header from "./Header";
+import { useEffect } from "react";
 
 const Profile = () => {
   const navigate = useNavigate();
-
+  useEffect(() => {
+    navigate("/profile/personalDetails");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       {/* Profile navbar */}
 
-      <div
-        data-aos="fade-down"
-        className="   flex  justify-between px-3 md:px-8 w-full h-[50px] py-2 "
-      >
-        <div className="flex gap-2 md:gap-4 justify-center items-center">
-          <div>
-            <MdOutlineArrowBackIos
-              size={25}
-              className=" hover:border border-gray-100 rounded-md cursor-pointer"
-              color="rgb(252,102,0)"
-              onClick={() => {
-                navigate("/", { replace: true });
-              }}
-            />
-          </div>
-          <p className="text-2xl md:text-3xl text-gray-500 font-light">
-            Profile
-          </p>
-        </div>
-      </div>
-
+      <Header text={"Profile"} />
       <div className=" flex justify-center items-center h-[90%] ">
         <div className="  md:min-w-[70%] md:w-[70%] w-[95%] p-2 h-full flex flex-col gap-4 mt-10 md:mt-4 ">
           {/* main container */}
 
-          <div className=" flex flex-col md:flex-row gap-6 md:gap-2 w-full  bg-white profile-box-shadow justify-between py-6 md:py-0 h-full ">
+          <div className=" flex flex-col md:flex-row gap-6 md:gap-2 w-full  bg-white md:box-shadow justify-between py-6 md:py-0 h-full ">
             {/* side bar */}
-
             <div className="hidden md:flex min-w-[20%]  flex-col gap-10  py-10  px-4 border-r border-gray-200">
               <div className="flex justify-center items-center  p-4">
                 <div className="border p-6 rounded-[50%] bg-gray-200 ">
@@ -76,7 +58,7 @@ const Profile = () => {
             </div>
 
             {/* content */}
-            <div className="w-full md:w-[80%]  flex justify-center items-start md:items-center h-fit md:h-full ">
+            <div className="w-full md:w-[80%]  flex justify-center items-start md:items-center h-fit md:h-full profile ">
               <Routes>
                 <Route index element={<PersonalDetails />} />
                 <Route path="personalDetails" element={<PersonalDetails />} />

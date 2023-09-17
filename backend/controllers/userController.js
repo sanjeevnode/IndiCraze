@@ -93,7 +93,6 @@ const updateUserDetails = async (req, res) => {
     const { userID } = req.user;
     const { name, email, mobile, address, password, state, city, pincode } =
       req.body;
-    console.log(name, email, mobile, address, password);
     const user = await User.findById(userID);
 
     if (user) {

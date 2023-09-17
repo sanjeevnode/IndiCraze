@@ -50,9 +50,6 @@ const Login = ({ setToggleRegister }) => {
         console.log(data.address);
 
         setIsLoggedIn(true);
-        toast.success("Login successful", {
-          autoClose: 2000,
-        });
         e.target.reset();
       })
       .catch((error) => {

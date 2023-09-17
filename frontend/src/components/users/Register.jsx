@@ -51,9 +51,6 @@ const Register = ({ setToggleRegister }) => {
 
       if (res.ok) {
         setToggleRegister(false);
-        toast.success("User registered successfully", {
-          autoClose: 3000,
-        });
         e.target.reset();
       } else {
         setEmailverified(false);
