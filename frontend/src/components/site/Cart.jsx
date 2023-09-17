@@ -13,18 +13,21 @@ const Cart = () => {
         "pk_test_51NrHSHSHL4Plemd0CfHategsOnsUXk91afhDbhQ7NShwDG56fJVbO5bri1MSXnpFxRWW6bIgCsrXvJD5RaBhLt4H001uQwVMng"
       );
 
-      const response = await fetch(`/api/payment`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token.current}`,
-        },
-      });
+      const response = await fetch(
+        `https://server-indicraze.onrender.com/api/payment`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token.current}`,
+          },
+        }
+      );
 
       const sesssion = await response.json();
 
       if (sesssion.id) {
-        await fetch(`/api/cart/delete`, {
+        await fetch(`https://server-indicraze.onrender.com/api/cart/delete`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

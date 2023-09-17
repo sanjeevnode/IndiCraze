@@ -13,7 +13,7 @@ const Login = ({ setToggleRegister }) => {
   // const [isLoading, setIsLoading] = useState(true);
 
   const loginUser = async (data) => {
-    return await fetch(`/api/user/login`, {
+    return await fetch(`https://server-indicraze.onrender.com/api/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

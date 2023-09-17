@@ -25,7 +25,7 @@ function App() {
   const [scrollToTop, setScrollToTop] = useState(false);
 
   const getUser = async (token) => {
-    await fetch(`/api/user/profile`, {
+    await fetch(`https://server-indicraze.onrender.com/api/user/profile`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -48,17 +48,20 @@ function App() {
   };
 
   const clearCart = async () => {
-    return await fetch(`/api/cart/delete`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token.current}`,
-      },
-    });
+    return await fetch(
+      `https://server-indicraze.onrender.com/api/cart/delete`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token.current}`,
+        },
+      }
+    );
   };
 
   const getCart = async (token) => {
-    await fetch(`/api/cart`, {
+    await fetch(`https://server-indicraze.onrender.com/api/cart`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

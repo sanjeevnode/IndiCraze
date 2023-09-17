@@ -10,7 +10,7 @@ const PersonalDetails = () => {
   const { currentUser, token, setCurrentUser } = useContext(Context);
 
   const updateUserDetails = async (data) => {
-    await fetch(`/api/user/profile`, {
+    await fetch(`https://server-indicraze.onrender.com/api/user/profile`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

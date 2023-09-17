@@ -17,15 +17,18 @@ const EmailVerificationModal = ({
   const isMailSent = useRef(false);
 
   const sendEmail = async (email) => {
-    const res = await fetch(`/api/sendemail`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-      }),
-    });
+    const res = await fetch(
+      `https://server-indicraze.onrender.com/api/sendemail`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+        }),
+      }
+    );
     const data = await res.json();
     if (res.ok) {
       setEmailVerificationOTP(data.otp);

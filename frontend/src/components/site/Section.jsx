@@ -18,7 +18,7 @@ const Section = ({ ele, i }) => {
   } = useContext(Context);
 
   const addToCart = async () => {
-    await fetch(`/api/cart/add`, {
+    await fetch(`https://server-indicraze.onrender.com/api/cart/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

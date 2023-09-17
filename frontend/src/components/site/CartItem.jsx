@@ -6,13 +6,16 @@ import { toast } from "react-toastify";
 const CartItem = ({ item }) => {
   const { setCart, TotalPrice, token, setIsLoading } = useContext(Context);
   const removeCartItem = async () => {
-    await fetch(`/api/cart/delete/${item._id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token.current}`,
-      },
-    })
+    await fetch(
+      `https://server-indicraze.onrender.com/api/cart/delete/${item._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token.current}`,
+        },
+      }
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error(response.statusText);

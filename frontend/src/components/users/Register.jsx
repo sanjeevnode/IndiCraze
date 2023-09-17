@@ -23,13 +23,16 @@ const Register = ({ setToggleRegister }) => {
   // const [isLoading, setIsLoading] = useState(true);
 
   const registerUser = async (data) => {
-    return await fetch(`/api/user/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    return await fetch(
+      `https://server-indicraze.onrender.com/api/user/register`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
   };
 
   const verifyFormSubmit = (data, e) => {
