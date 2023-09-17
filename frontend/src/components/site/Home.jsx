@@ -12,7 +12,9 @@ const Home = () => {
 
   const getfoodata = async () => {
     try {
-      const res = await fetch(`/api/fooditem/getfooditem`);
+      const res = await fetch(
+        `https://server-indicraze.onrender.com/api/fooditem/getfooditem`
+      );
       const data = await res.json();
 
       setVegetarian(await data.Vegetarian);

@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://server-indicraze.onrender.com", // Replace with your API server URL
+        target: "https://server-indicraze.onrender.com/", // Replace with your API server URL
         changeOrigin: true,
       },
     },
