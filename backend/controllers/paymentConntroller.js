@@ -27,8 +27,8 @@ const payment = async (req, res) => {
         payment_method_types: ["card"],
         line_items: lineItems,
         mode: "payment",
-        success_url: "http://localhost:5173/",
-        cancel_url: "http://localhost:5173/",
+        success_url: "https://indicraze.netlify.app/",
+        cancel_url: "https://indicraze.netlify.app/cart",
       });
 
       res.status(200).json({ id: session.id, url: session.url });
