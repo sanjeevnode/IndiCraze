@@ -5,7 +5,7 @@ dotenv.config();
 import connectDB from "./config/db.js";
 import foodItemRouter from "./routes/foodItemRoutes.js";
 import adminRouter from "./routes/aminRoutes.js";
-import sendEmailRouter from "./routes/sendemailRoutes.js";
+import sendEmailRouter from "./routes/sendEmailRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import cartRouter from "./routes/cartRoutes.js";
 import paymentRouter from "./routes/paymentRoutes.js";
