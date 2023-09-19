@@ -1,4 +1,5 @@
 import Cart from "../models/cartModel.js";
+import User from "../models/userModel.js";
 
 // Add item to cart
 // /api/cart/add
@@ -73,7 +74,7 @@ const getCart = async (req, res) => {
 };
 
 // Remove a cart
-// /api/cart/remove/:userID
+// /api/cart/delete/
 const removeCart = async (req, res) => {
   try {
     const { userID } = req.user;
@@ -83,6 +84,38 @@ const removeCart = async (req, res) => {
       res.status(204).end();
     } else {
       res.status(204).json({ message: "Cart empty" });
+    }
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
+// Add a cart to order history
+// /api/cart/history/
+const addToOrderHistory = async (req, res) => {
+  try {
+    const { userID } = req.user;
+    const cart = await Cart.findOneAndDelete({ userID });
+    const user = await User.findById(userID);
+
+    if (cart && user) {
+      const totalPrice = cart.items.reduce((acc, item) => {
+        return acc + item.price;
+      }, 0);
+
+      const object = {
+        date: new Date().toLocaleString(),
+        items: cart.items,
+        totalPrice: totalPrice,
+      };
+
+      user.orderHistory.push(object);
+
+      await user.save();
+
+      res.status(200).json({ orderHistory: user.orderHistory });
+    } else {
+      res.status(200).json({ message: "Cart empty" });
     }
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -123,4 +156,4 @@ const removeCartItem = async (req, res) => {
   }
 };
 
-export { addToCart, getCart, removeCart, removeCartItem };
+export { addToCart, getCart, removeCart, removeCartItem, addToOrderHistory };

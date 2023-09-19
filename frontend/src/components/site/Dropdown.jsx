@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Context } from "../../App";
 import { BsPersonCircle } from "react-icons/bs";
-import { AiOutlineLogout } from "react-icons/ai";
+import { AiOutlineLogout, AiOutlineHistory } from "react-icons/ai";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -46,9 +46,19 @@ const Dropdown = () => {
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0 }}
-            className="hidden md:flex shadow-xl bg-white rounded-lg absolute right-20 overflow-hidden mt-[60px]"
+            className="hidden md:flex shadow-xl bg-white rounded-lg absolute right-20 overflow-hidden mt-[60px] z-20"
           >
             <div className="flex flex-col">
+              <button
+                onClick={() => {
+                  navigate("/my-orders", { replace: true });
+                  setUserDropdownOptions(false);
+                }}
+                className="flex gap-2 p-2 w-full justify-center items-center cursor-pointer hover:bg-gray-200"
+              >
+                <AiOutlineHistory color="gray " />
+                <p className="text-gray-500">My Orders</p>
+              </button>
               <button
                 onClick={() => {
                   navigate("/profile", { replace: true });
@@ -59,6 +69,7 @@ const Dropdown = () => {
                 <BsPersonCircle color="gray " />
                 <p className="text-gray-500">Profile</p>
               </button>
+
               <button
                 onClick={handleLogout}
                 className="flex gap-2 p-2 w-full justify-center items-center cursor-pointer hover:bg-gray-200"

@@ -10,6 +10,7 @@ import LoadingBackdrop from "./components/Backdrop/LoadingBackdrop";
 import Profile from "./components/site/Profile";
 import Cart from "./components/site/Cart";
 import ScrollToTop from "./components/site/ScrollToTop";
+import OrderHistory from "./components/site/OrderHistory";
 
 const Context = createContext();
 
@@ -126,7 +127,9 @@ function App() {
         <BackdropLoginRegistration />
         {isLoading && <LoadingBackdrop />}
         {/* <Navbar /> */}
+
         <Dropdown />
+
         <ToastContainer className="hidden md:block" />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -137,6 +140,10 @@ function App() {
           <Route
             path="/cart"
             element={token.current ? <Cart /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/my-orders"
+            element={token.current ? <OrderHistory /> : <Navigate to="/" />}
           />
         </Routes>
 

@@ -152,6 +152,16 @@ const Navbar = () => {
 
           {isLoggedIn && (
             <li className="text-3xl">
+              <NavLink to="/my-orders">
+                <p className="font-light text-gray-500 cursor-pointer">
+                  My Orders
+                </p>
+              </NavLink>
+            </li>
+          )}
+
+          {isLoggedIn && (
+            <li className="text-3xl">
               <NavLink to="/profile">
                 <p className="font-light text-gray-500 cursor-pointer">
                   Profile

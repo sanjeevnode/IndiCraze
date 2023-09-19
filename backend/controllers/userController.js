@@ -1,5 +1,6 @@
 import User from "../models/userModel.js";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 
 // Register user
 // /api/user/register
@@ -11,10 +12,12 @@ const registerUser = async (req, res) => {
     if (userExists) {
       return res.status(400).json({ message: "User already exists" });
     } else {
+      const salt = await bcrypt.genSalt(10);
+      const hashPassword = await bcrypt.hash(password, salt);
       const user = await User.create({
         email,
         name,
-        password,
+        hashPassword,
       });
 
       res.status(201).json({
@@ -51,6 +54,7 @@ const loginUser = async (req, res) => {
         city: user.city,
         pincode: user.pincode,
         address: user.address,
+        orderHistory: user.orderHistory,
       });
     } else {
       res.status(401).json({ message: "Invalid Email or Password " });
@@ -77,6 +81,7 @@ const getUser = async (req, res) => {
         city: user.city,
         pincode: user.pincode,
         address: user.address,
+        orderHistory: user.orderHistory,
       });
     } else {
       res.status(404).json({ message: "User not found" });
@@ -119,6 +124,7 @@ const updateUserDetails = async (req, res) => {
         city: user.city,
         pincode: user.pincode,
         address: user.address,
+        orderHistory: user.orderHistory,
       });
     } else {
       res.status(404).json({ message: "User not found" });
@@ -128,4 +134,40 @@ const updateUserDetails = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser, getUser, updateUserDetails };
+// clear order history
+// api/user/clear-order-history
+const clearOrderHistory = async (req, res) => {
+  try {
+    const { userID } = req.user;
+
+    const user = await User.findById(userID);
+
+    if (user) {
+      user.orderHistory = [];
+      await user.save();
+      res.status(200).json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        mobile: user.mobile,
+        state: user.state,
+        city: user.city,
+        pincode: user.pincode,
+        address: user.address,
+        orderHistory: user.orderHistory,
+      });
+    } else {
+      res.status(404).json({ message: "User not found}" });
+    }
+  } catch (error) {
+    res.status(400).json({ message: "Invalid Data", error: error.message });
+  }
+};
+
+export {
+  registerUser,
+  loginUser,
+  getUser,
+  updateUserDetails,
+  clearOrderHistory,
+};

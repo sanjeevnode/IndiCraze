@@ -35,3 +35,8 @@
 .mobile-active .active {
   @apply text-[rgb(251,102,0)] bg-white;
 }
+
+.nnexyt {
+  background-repeat: no-repeat;
+  background-size: cover;
+}

@@ -5,51 +5,66 @@ import { Context } from "../../App";
 import { loadStripe } from "@stripe/stripe-js";
 import { toast } from "react-toastify";
 const Cart = () => {
-  const { cart, TotalPrice, token, setIsLoading } = useContext(Context);
+  const { cart, TotalPrice, token, setIsLoading, currentUser } =
+    useContext(Context);
 
   const handlePayment = async () => {
     setIsLoading(true);
     try {
-      const stripe = await loadStripe(
-        "pk_test_51NrHSHSHL4Plemd0CfHategsOnsUXk91afhDbhQ7NShwDG56fJVbO5bri1MSXnpFxRWW6bIgCsrXvJD5RaBhLt4H001uQwVMng"
-      );
+      if (currentUser.address === " ") {
+        toast.error("Please complete your profile", {
+          autoClose: 700,
+        });
+        setIsLoading(false);
+      } else {
+        const stripe = await loadStripe(
+          "pk_test_51NrHSHSHL4Plemd0CfHategsOnsUXk91afhDbhQ7NShwDG56fJVbO5bri1MSXnpFxRWW6bIgCsrXvJD5RaBhLt4H001uQwVMng"
+        );
 
-      const response = await fetch(
-        `https://server-indicraze.onrender.com/api/payment`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token.current}`,
-          },
-        }
-      );
+        const response = await fetch(
+          `https://server-indicraze.onrender.com/api/payment`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token.current}`,
+            },
+          }
+        );
 
-      const sesssion = await response.json();
+        const sesssion = await response.json();
 
-      if (sesssion.id) {
-        await fetch(`https://server-indicraze.onrender.com/api/cart/delete`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token.current}`,
-          },
-        })
-          .then((response) => {
-            if (response.ok) {
-              setIsLoading(false);
-              stripe.redirectToCheckout({
-                sessionId: sesssion.id,
-              });
-            } else {
-              throw new Error("Unable to process request");
+        if (sesssion.id) {
+          await fetch(
+            `https://server-indicraze.onrender.com/api/cart/history`,
+            {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token.current}`,
+              },
             }
-          })
-          .catch((error) => {
-            toast.error(error.message, {
-              autoClose: 600,
+          )
+            .then((response) => {
+              if (response.ok) {
+                setIsLoading(false);
+                stripe.redirectToCheckout({
+                  sessionId: sesssion.id,
+                });
+              } else {
+                throw new Error("Unable to process request");
+              }
+            })
+            .catch((error) => {
+              toast.error(error.message, {
+                autoClose: 600,
+              });
             });
+        } else {
+          toast.error("Unable to process payment", {
+            autoClose: 600,
           });
+        }
       }
     } catch (error) {
       console.log(error.message);
