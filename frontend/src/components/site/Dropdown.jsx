@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Context } from "../../App";
 import { BsPersonCircle } from "react-icons/bs";
 import { AiOutlineLogout, AiOutlineHistory } from "react-icons/ai";
@@ -13,6 +13,7 @@ const Dropdown = () => {
     setUserDropdownOptions,
     clearCart,
     setIsLoading,
+    dropDownRef,
   } = useContext(Context);
 
   const handleLogout = async () => {
@@ -38,11 +39,14 @@ const Dropdown = () => {
     }
   };
 
+  useEffect(() => {}, []);
+
   return (
     <>
       {userDropdownOptions ? (
         <AnimatePresence mode="wait">
           <motion.div
+            ref={dropDownRef}
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0 }}

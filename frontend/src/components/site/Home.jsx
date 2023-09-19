@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import Section from "./Section";
 import { Context } from "../../App";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const Home = () => {
   const { setIsLoading } = useContext(Context);
@@ -93,6 +94,7 @@ const Home = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );

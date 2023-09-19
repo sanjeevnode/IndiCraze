@@ -19,6 +19,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false); // current
   const [userDropdownOptions, setUserDropdownOptions] = useState(false);
+  const dropDownRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const token = useRef(localStorage.getItem("token") || "");
   const [cart, setCart] = useState([]);
@@ -86,6 +87,20 @@ function App() {
       });
   };
 
+  // dropdown close
+  const closeDropDown = (e) => {
+    if (
+      dropDownRef.current &&
+      userDropdownOptions &&
+      !dropDownRef.current.contains(e.target)
+    ) {
+      setUserDropdownOptions(false);
+    }
+  };
+
+  document.addEventListener("mousedown", closeDropDown);
+  // till here
+
   useEffect(() => {
     window.scrollTo(0, 0);
     if (token.current) {
@@ -121,6 +136,7 @@ function App() {
         setCart,
         cart,
         TotalPrice,
+        dropDownRef,
       }}
     >
       <div className="w-full h-screen  ">

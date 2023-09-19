@@ -104,7 +104,9 @@ const addToOrderHistory = async (req, res) => {
       }, 0);
 
       const object = {
-        date: new Date().toLocaleString(),
+        date: new Date().toLocaleString(undefined, {
+          timeZone: "Asia/Kolkata",
+        }),
         items: cart.items,
         totalPrice: totalPrice,
       };
